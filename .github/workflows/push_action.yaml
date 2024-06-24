@@ -17,4 +17,4 @@ jobs:
       with:
         url: 'https://1lzpwnnf-3196.inc1.devtunnels.ms/'
         method: 'POST'
-        data: '{"entry": ${{env.entry}}, "lngs": ${{env.lngs}}}'
+        data: '{"entry": "./src/i18n", "lngs": ["ar, fr, zh"]}'
