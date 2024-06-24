@@ -5,8 +5,8 @@ on:
     branches: ['main']
 
 env:
-  entry: './src/i18n'
-  lngs: ['ar', 'fr', 'zh']
+  entry: ./src/i18n
+  lngs: 'ar,fr,zh'
 
 jobs:
   sendReq:
