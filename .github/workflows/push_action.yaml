@@ -1,0 +1,20 @@
+name: push action
+
+on: 
+  push:
+    branches: ['main']
+
+env:
+  entry: './src/i18n'
+  lngs: ['ar', 'fr', 'zh']
+
+jobs:
+  sendReq:
+    runs-on: ubuntu-latest
+    steps:
+    - name: send req
+      uses: fjogeleit/http-request-action@v1
+      with:
+        url: 'https://1lzpwnnf-3196.inc1.devtunnels.ms/'
+        method: 'POST',
+        data: '{"entry": ${{env.entry}}, "lngs": ${{env.lngs}}}'
