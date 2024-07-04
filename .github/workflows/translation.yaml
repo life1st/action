@@ -5,8 +5,7 @@ on:
     branches: ['main']
 
 env:
-  entry: ./src/data
-  lngs: 'ar,fr,zh'
+  BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
 
 jobs:
   readAndSend:
@@ -19,4 +18,4 @@ jobs:
       with:
         node-version: '20.x'
     - name: send convert request
-      run: npm i axios && node convert.js --action
+      run: npm i axios && node i18n.convert.js --branch=${{env.BRANCH_NAME}}
