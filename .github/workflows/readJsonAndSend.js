@@ -3,17 +3,17 @@ const { promises: fs } = require('fs')
 const axios = require('axios')
 
 async function sendReq(data) {
-    const isDev = true
+    const isDev = false
     const devHost = 'localhost:3196'
-    const prodHost = ''
+    const prodHost = 'https://1lzpwnnf-3196.inc1.devtunnels.ms'
     const path = '/convert'
     const url = isDev ? devHost : prodHost + path
     const result = await axios.post(url, data)
     return result
 }
 async function run() {
-    const entryPath = core.getInput('entry')
-    const entry = await fs.stat(entry)
+    // const entryPath = core.getInput('entry')
+    const entry = await fs.stat('./src/data')
     const files = []
     if (entry.isDirectory()) {
         files.push(...await fs.readdir(entry, 'utf8'))
@@ -24,7 +24,6 @@ async function run() {
     const data = Object.fromEntries(
         files.map(file => [file, JSON.parse(fs.readFileSync(file, 'utf8'))])
     )
-    console.log(data)
     
     const result = await sendReq(data)
     console.log(result)

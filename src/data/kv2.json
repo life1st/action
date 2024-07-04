@@ -1,0 +1,12 @@
+{
+    "username": "user123",
+    "password": "securePass!",
+    "email": "example@email.com",
+    "accountType": "premium",
+    "registrationDate": "2023-01-01",
+    "lastLogin": "2023-09-15",
+    "membershipStatus": "active",
+    "country": "USA",
+    "language": "English",
+    "subscriptionPlan": "Annual"
+}

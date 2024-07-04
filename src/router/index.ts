@@ -7,7 +7,7 @@ router.post('/', async (ctx) => {
 
     ctx.body = 'ok'
 }).post('/convert', async (ctx) => {
-    console.log('convert', ctx.request.body)
+    console.log('convert', ctx.request.body, new Date().toString())
 
     ctx.body = 'ok'
 })
