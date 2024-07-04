@@ -5,16 +5,20 @@ on:
     branches: ['main']
 
 env:
-  entry: ./src/i18n
+  entry: ./src/data
   lngs: 'ar,fr,zh'
 
 jobs:
-  sendReq:
+  readAndSend:
     runs-on: ubuntu-latest
     steps:
-    - name: send req
-      uses: fjogeleit/http-request-action@v1
-      with:
-        url: 'https://1lzpwnnf-3196.inc1.devtunnels.ms/'
-        method: 'POST'
-        data: '{"entry": "./src/i18n", "lngs": ["ar, fr, zh"]}'
+    - name: checkout
+      uses: actions/checkout@v3
+    - name: read jsons inn data
+      id: files
+      uses: ./read-json-action
+      with: 
+        entry: ${{env.entry}}
+    - name: show result
+      run: |
+        echo ${{steps.files.outputs}}
