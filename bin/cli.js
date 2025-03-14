@@ -64,33 +64,30 @@ const createAuthServer = () => {
   });
 };
 
-program
-  .name('langhub')
-  .description('LangHub CLI 工具')
-  .version('1.0.0');
+program.name("lango").description("Lango CLI 工具").version("1.0.0");
 
 program
-  .command('login')
-  .description('登录 LangHub')
+  .command("login")
+  .description("获取登录 token")
   .action(async () => {
     const token = config.get(TOKEN_KEY);
     if (token) {
-      console.log('已登录，无需重复登录', token);
+      console.log("已登录，无需重复登录", token);
       process.exit(0);
     }
     // try {
     //   const port = process.env.PORT || 3000;
-      
+
     //   // 启动认证服务器并等待 token
     //   const tokenPromise = createAuthServer();
-      
+
     //   // 打开浏览器
     //   console.log('正在打开浏览器进行登录...');
     //   await open(`http://localhost:${port}/auth`);
 
     //   // 等待获取 token
     //   const token = await tokenPromise;
-      
+
     //   if (!token) {
     //     throw new Error('登录超时');
     //   }
@@ -104,36 +101,36 @@ program
     //   process.exit(1);
     // }
     try {
-      const token = await getToken()
-      config.set(TOKEN_KEY, token)
-      console.log('登录成功！', token);
+      const token = await getToken();
+      config.set(TOKEN_KEY, token);
+      console.log("登录成功！", token);
       process.exit(0);
     } catch (error) {
-      console.error('登录失败：', error.message);
+      console.error("登录失败：", error.message);
       process.exit(1);
     }
   });
 
 // 添加获取 token 的命令
 program
-  .command('token')
-  .description('显示当前登录 token')
+  .command("token")
+  .description("显示当前登录 token")
   .action(() => {
     const token = config.get(TOKEN_KEY);
     if (token) {
-      console.log('当前 token:', token);
+      console.log("当前 token:", token);
     } else {
-      console.log('未登录');
+      console.log("未登录");
     }
   });
 
 // logout
 program
-  .command('logout')
-  .description('登出 LangHub')
+  .command("logout")
+  .description("删除本地 token")
   .action(() => {
     config.delete(TOKEN_KEY);
-    console.log('登出成功', config.get(TOKEN_KEY));
+    console.log("登出成功", config.get(TOKEN_KEY));
   });
 
 // 从 飞书 sheet 中获取数据，并保存为 json
@@ -145,7 +142,9 @@ program
     // https://xcm292ujry.feishu.cn/sheets/UiX5soav6hJHMDt7jkLcnrZNnJg
     console.log(url, 'url')
     if (!url) {
-      console.error('参数不正确，请提供飞书 sheet url: langhub fetch https://xcm292ujry.feishu.cn/sheets/UiX5soav6hJHMDt7jkLcnrZNnJg');
+      console.error(
+        "参数不正确，请提供飞书 sheet url: lango fetch https://xcm292ujry.feishu.cn/sheets/UiX5soav6hJHMDt7jkLcnrZNnJg"
+      );
       process.exit(1);
     }
     const token = config.get(TOKEN_KEY);
@@ -168,9 +167,9 @@ program
     }
     console.log(sheetToken, token)
     const data = await getSheetsInfo(sheetToken)
-    console.log(data)
+    // console.log(data)
     // test: 先请求第0个 sheet
-    const sheet = data[0]
+    const sheet = data[1]
     const sheetData = await getSheetRange(sheetToken, {
       sheetId: sheet.sheetId,
       from: sheet.from,

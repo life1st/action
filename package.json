@@ -1,5 +1,5 @@
 {
-  "name": "langhub",
+  "name": "lango",
   "version": "1.0.0",
   "description": "多语言资源管理",
   "type": "module",
@@ -7,7 +7,8 @@
   "scripts": {
     "start": "node src/index.js",
     "dev": "nodemon src/index.js",
-    "test": "jest"
+    "test": "jest",
+    "fetch": "lango fetch https://xcm292ujry.feishu.cn/sheets/UiX5soav6hJHMDt7jkLcnrZNnJg"
   },
   "keywords": [],
   "author": "",
@@ -24,6 +25,6 @@
     "nodemon": "^3.0.2"
   },
   "bin": {
-    "langhub": "./bin/cli.js"
+    "lango": "./bin/cli.js"
   }
 }
